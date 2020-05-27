@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Help{% endblock %}
+{% block content %}
+<section class="hero-area">
+	<div class="block z-index-10">
+		<h1>Thank you. The Mailman is on His Way :)</h1>
+	</div>
+</section>
+<br>
+<section id="contact-us" class="contact-us section-bg">
+	<div class="container">
+		<div class="row">
+			<div class="title text-center wow fadeIn" data-wow-duration="500ms">
+				<h2>Get In <span class="color">Touch</span></h2>
+				<div class="border"></div>
+			</div>
+			<div class="contact-info col-md-6 wow fadeInUp" data-wow-duration="500ms">
+				<h3>Contact Details</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, vero, provident, eum eligendi blanditiis ex explicabo vitae nostrum facilis asperiores dolorem illo officiis ratione vel fugiat dicta laboriosam labore adipisci.</p>
+				<div class="contact-details">
+					<div class="con-info clearfix">
+						<i class="tf-map-pin"></i>
+						<span>Khaja Road, Bayzid, Chittagong, Bangladesh</span>
+					</div>
+
+					<div class="con-info clearfix">
+						<i class="tf-ion-ios-telephone-outline"></i>
+						<span>Phone: +880-31-000-000</span>
+					</div>
+
+					<div class="con-info clearfix">
+						<i class="tf-ion-iphone"></i>
+						<span>Fax: +880-31-000-000</span>
+					</div>
+
+					<div class="con-info clearfix">
+						<i class="tf-ion-ios-email-outline"></i>
+						<span>Email: hello@meghna.com</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% block footer %}
+{% include 'core/footer.html' %}
+{% endblock %}
+{% endblock %}

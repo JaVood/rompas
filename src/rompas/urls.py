@@ -1,0 +1,41 @@
+from django.urls import re_path
+from django.conf.urls import url
+import django.views.defaults
+from . import views
+
+urlpatterns = [
+    url(r'^cart_form/$', views.cart_form, name='cart_form'),
+    url(r"^subscription/(?P<subscription_name>.[\w-]+[']*)/$", views.subscription, name='subscription'),
+    url(r"^subscription_update/(?P<subscription_name>.[\w-]+[']*)/$", views.subscription_update, name='subscription_update'),
+    url(r"^cancel_subscription/$", views.cancel_subscription, name='cancel_subscription'),
+    url(r"^tokens/(?P<tokens_name>.[\w-]+[']*)/$", views.add_tokens, name='add_tokens'),
+    url(r'^$', views.index, name='index'),
+    url(r'^about/$', views.about, name='about'),
+    url(r'^faq/$', views.faq, name='faq'),
+    url(r'^help/$', views.help, name='help'),
+    url(r'^help-send/$', views.help_send, name='help_send'),
+    url(r"^library/(?P<category_slug>.[\w-]+[']*)/$", views.library_category, name='library_category'),
+    url(r'^private_policy/$', views.private_policy, name='private_policy'),
+    url(r'^terms_of_use/$', views.terms_of_use, name='terms_of_use'),
+    re_path(r'^profile/$', views.profile, name='profile'),
+    re_path(r'^profile/history$', views.purchase_history, name='purchase_history'),
+    url(r"^profile/history/(?P<category_slug>.[\w-]+[']*)/$", views.purchase_history_category, name='purchase_history_category'),
+    re_path(r'^sign_in/$', views.signin, name='sign_in'),
+    re_path(r"^buy_sub/(?P<sub_name>.[\w-]+[']*)/$", views.buy_sub, name='buy_sub'),
+    url(r'^pay-callback/$', views.PayCallbackView.as_view(), name='pay_callback'),
+    url(r'^ru/$', views.index_ru, name='index_ru'),
+    url(r'^ru/about/$', views.about_ru, name='about_ru'),
+    url(r'^ru/faq/$', views.faq_ru, name='faq_ru'),
+    url(r'^ru/help/$', views.help_ru, name='help_ru'),
+    url(r'^ru/help-send/$', views.help_send_ru, name='help_send_ru'),
+    url(r"^ru/library/(?P<category_slug>.[\w-]+[']*)/$", views.library_category_ru, name='library_category_ru'),
+    url(r'^ru/private_policy/$', views.private_policy_ru, name='private_policy_ru'),
+    url(r'^ru/terms_of_use/$', views.terms_of_use_ru, name='terms_of_use_ru'),
+    re_path(r'^ru/profile/$', views.profile_ru, name='profile_ru'),
+    re_path(r'^ru/profile/history$', views.purchase_history_ru, name='purchase_history_ru'),
+    url(r"^ru/profile/history/(?P<category_slug>.[\w-]+[']*)/$", views.purchase_history_category_ru,
+        name='purchase_history_category_ru'),
+    re_path(r'^ru/sign_in/$', views.signin_ru, name='sign_in_ru'),
+    url(r'^boss/rompas/(?P<order_id>\d+)/$', views.AdminOrderDetail, name='AdminOrderDetail'),
+    url(r'^test/$', views.test, name='test'),
+]

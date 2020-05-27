@@ -1,0 +1,106 @@
+{% extends 'core/base_ru.html' %}
+{% load static %}
+{% block title %}ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ{% endblock %}
+{% block content %}
+<section class="hero-area">
+	<div class="block z-index-10">
+		<h1>ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ</h1>
+	</div>
+</section>
+<br>
+<div class="container">
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              1. Где я могу использовать эти материалы?
+            </button>
+          </h5>
+        </div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            Вы можете использовать наши материалы для создания собственных бесплатных или коммерческих проектов игр, сайтов и других продуктов.
+            </br>
+            Вы также можете свободно использовать текстуры в печатных изданиях, таких как книги, реклама, дизайн упаковки, титульные листы DVD и многое другое.
+            </br>
+            Вы не имеете права бесплатно распространять наши изображения или перепродавать наши изображения как конкурирующий продукт. Даже если вы измените изображение, вы не сможете его продать.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              2. Мое имя пользователя или пароль не работает!
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body">
+            Пожалуйста, убедитесь, что вы используете правильное имя пользователя.
+            </br>
+            Если вы забыли свой пароль, воспользуйтесь функцией "Забыли пароль?
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              3. Совместимы ли ваши материалы с моим 3D-приложением?
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+          <div class="card-body">
+            Наши материалы совместимы практически с любыми 2D и 3D-приложениями.
+            </br>
+            Мы используем следующие форматы файлов:
+            </br>
+            • Обычные изображения - JPG (качество 12) или PNG без потерь 16 бит.
+            </br>
+            • Маскированные изображения - без потерь 16 бит PNG
+            </br>
+            • 3D сканированные материалы - JPG (качество 12)
+            </br>
+            • 3D-объекты - формат .OBJ и .FBX.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingFour">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              4. Могу ли я загрузить свои материалы, не тратя впустую rompas снова?
+            </button>
+          </h5>
+        </div>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+          <div class="card-body">
+            Да, при перезагрузке уже приобретенного файла, он не использует никаких дополнительных кредитов. При просмотре библиотеки приобретенные файлы будут иметь значок "Загрузить" вместо значка "Купить".
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingFive">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              5. Загрузка прервана!
+            </button>
+          </h5>
+        </div>
+        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+          <div class="card-body">
+            Почти во всех случаях это связано с ошибкой в локальной сети. Попробуйте перезагрузить файл (это не потребует дополнительных кредитов).
+          </div>
+        </div>
+      </div>
+    <div>
+</div>
+    </div>
+</div>
+{% block footer %}
+{% include 'core/footer_ru.html' %}
+{% endblock %}
+{% endblock %}

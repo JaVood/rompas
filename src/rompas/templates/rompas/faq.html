@@ -1,0 +1,106 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}FAQ{% endblock %}
+{% block content %}
+<section class="hero-area">
+	<div class="block z-index-10">
+		<h1>FAQ</h1>
+	</div>
+</section>
+<br>
+<div class="container">
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              1. Where can I use the materials?
+            </button>
+          </h5>
+        </div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            You are allowed to use our materials to create your own free or commercial projects of games, sites and other products.
+            </br>
+            You are also free to use textures in printed publications such as books, advertisements, packaging designs, DVD cover sheets and more.
+            </br>
+            You are not allowed to distribute our images free of charge, or resell our images as a competing product. Even if you change the image, you may not sell it.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              2. My username or password does not work!
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body">
+            Please make sure you use the correct username.
+            </br>
+            If you have forgotten your password, use the "Forgot password"
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              3. Are your materials compatible with my 3D application?
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+          <div class="card-body">
+            Our materials are compatible with virtually every 2D and 3D application.
+            </br>
+            We use the following file formats:
+            </br>
+            • Regular images - JPG (Quality 12) or Lossless PNG 16bit
+            </br>
+            • Masked images - Lossless PNG 16bit
+            </br>
+            • 3D Scanned Materials - JPG (Quality 12)
+            </br>
+            • 3D Objects - .OBJ format and .FBX format.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingFour">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              4. Can I reload my materials without wasting my rompas again?
+            </button>
+          </h5>
+        </div>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+          <div class="card-body">
+            Yes, when you reload an already purchased file, it does not use any additional credits. When browsing the library, the purchased files will have a "download" icon instead of a buy "icon".
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingFive">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              5. Download interrupted!
+            </button>
+          </h5>
+        </div>
+        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+          <div class="card-body">
+            In almost all cases, this is due to an error in the local network. Try to reload the file (it will not cost extra credits).
+          </div>
+        </div>
+      </div>
+    <div>
+</div>
+    </div>
+</div>
+{% block footer %}
+{% include 'core/footer.html' %}
+{% endblock %}
+{% endblock %}

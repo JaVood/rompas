@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Rompas{% endblock %}
+{% block content %}
+<section class="hero-area">
+    <div class="block z-index-10">
+		<h1>Thank you {{ user.username }} for choosing us, now you need pay for the subscription.</h1>
+        <form method="post" action="https://www.liqpay.ua/api/3/checkout/" accept-charset="utf-8">
+            <input type="hidden" name="data" value="{{ data }}"/>
+            <input type="hidden" name="signature" value="{{ signature }}"/>
+            <button style="border: none !important; display:inline-block !important;text-align: center !important;padding: 7px 20px !important; color: #fff !important; font-size:16px !important; font-weight: 600 !important; font-family:OpenSans, sans-serif; cursor: pointer !important; border-radius: 2px !important; background: rgb(122,183,43) !important;"onmouseover="this.style.opacity='0.5';" onmouseout="this.style.opacity='1';">
+                <img src="https://static.liqpay.ua/buttons/logo-small.png" name="btn_text" style="margin-right: 7px !important; vertical-align: middle !important;"/>
+                <span style="vertical-align:middle; !important">Buy</span>
+            </button>
+        </form>
+	</div>
+</section>
+{% endblock %}

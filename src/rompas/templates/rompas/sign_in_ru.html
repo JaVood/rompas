@@ -1,0 +1,484 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Регистрация</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="{% static '/theme/images/favicons/favicon_48x48.png' %}">
+	<link rel="stylesheet" href="{% static '/theme/plugins/themefisher-font/style.css' %}">
+	<link rel="stylesheet" href="{% static '/theme/plugins/bootstrap/dist/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static '/theme/plugins/animate-css/animate.css' %}">
+	<link rel="stylesheet" href="{% static '/theme/plugins/magnific-popup/dist/magnific-popup.css' %}">
+	<link rel="stylesheet" href="{% static '/theme/plugins/slick-carousel/slick/slick.css' %}">
+	<link rel="stylesheet" href="{% static '/theme/plugins/slick-carousel/slick/slick-theme.css' %}">
+	<link rel="stylesheet" href="{% static '/theme/css/style.css' %}">
+	<link href="{% static '/theme/plugins/remodal/remodal.css' %}" rel="stylesheet">
+    <link href="{% static '/theme/plugins/remodal/remodal-default-theme.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'sign_in/assets/form-css/style.css' %}">
+    <style>
+body, html {
+    /*margin: 0;*/
+    background-image: url( '/static/theme/images/backgrounds/registration_fon_1.jpg' );
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #353b43;
+    color: #737f8a;
+}
+.bg {
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.pricetab {
+  width:17%;
+  min-width:150px;
+  background: linear-gradient(#555, #444);
+  /*float:left;*/
+  /*margin-top:.2%;*/
+  box-shadow:1px 1px 5px rgba(0, 0, 0, .5);
+}
+.pricetabmid {
+  width:20%;
+  min-width:220px;
+  background: linear-gradient( #57cbcc, rgba(94, 254, 255, 0.44));
+  float:left;
+  box-shadow:0 0  15px rgba(0, 0, 0, 1);
+  position:relative;
+}
+.priceheader {
+  width:100%;
+  height:60px;
+  background-image: -o-linear-gradient(bottom ,#444 , #555);
+  background-image: -webkit-linear-gradient(bottom ,#444 , #555);
+  background-image: -o-linear-gradient(bottom ,#444 , #555);
+  background-image: -moz-linear-gradient(bottom ,#444 , #555);
+  background-image: linear-gradient(to bottom , #444 , #555);
+  box-shadow:0 2px 12px rgba(0, 0, 0, .5);
+}
+.price {
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:1px solid #57cbcc;
+  margin:5% auto 0 auto;
+  text-align:center;
+}
+.pricemid {
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:1px solid #444;
+  margin:5% auto 0 auto;
+  text-align:center;
+}
+.infos{
+  margin-top:10%;
+}
+.pricefooter {
+  width:100%;
+  height:50px;
+  margin-top:10%;
+  background:#333;
+}
+.pricefootermid {
+  width:100%;
+  height:50px;
+  margin-top:10%;
+  background:#57cbcc;
+}
+/* Typo */
+.title{
+  font-family:arial;
+  color:#fff;
+  font-size:38px;
+  font-weight:normal;
+  text-align:center;
+  text-transform:uppercase;
+  text-shadow: 1px 2px 5px rgba(0,0,5,0.2);
+  margin:auto;
+}
+h1{
+  font-size:18px;
+  color:#fff;
+  text-align:center;
+  line-height:3;
+}
+h2{
+  text-align:center;
+  font-size:42px;
+  color:#fff;
+	margin-top: 35px;
+}
+sub{
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+}
+h3{
+  font-size:14px;
+  font-weight:normal;
+  text-align:center;
+  color:#fff;
+  line-height:1;
+}
+.button a{
+  color:#fff;
+  font-size:17px;
+  font-weight:bold;
+  text-decoration:none;
+  line-height:3;
+}
+.buttonmid a{
+  color:#fff;
+  font-size:17px;
+  font-weight:bold;
+  text-decoration:none;
+  line-height:3;
+}
+.credit{
+  color:#fff;
+  font-size:16px;
+  font-weight:normal;
+  text-align:left;
+  text-shadow: 1px 2px 5px rgba(0,0,5,0.2);
+  margin-left:5%;
+  line-height:1.3;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+/* Buttons */
+.button{
+  width:50%;
+  height:50px;
+  margin:0 auto 0 auto;
+  background:#57cbcc;
+  text-align:center;
+  cursor:pointer;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+.button:hover{
+  width:60%;
+}
+.buttonmid{
+  width:50%;
+  height:50px;
+  margin:0 auto 0 auto;
+  background:#333;
+  text-align:center;
+  cursor:pointer;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+.buttonmid:hover{
+  width:60%;
+}
+
+        .align-center {
+    display: block;
+    margin: 1.0em auto;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+<header id="navigation" class="navbar navigation">
+	<a class="navbar-brand logo" href="/ru/">
+		<img src="{% static '/theme/images/logos/logo.png' %}" alt="Website Logo">
+	</a>
+	<nav class="collapse navbar-collapse" style="float: right" role="Navigation">
+		<ul id="nav" class="nav navbar-nav navigation-menu">
+			<li><a href="/ru/" class="text-25 hover_nav">Дом</a></li>
+			<li><a href="/ru/library/assets" class="text-25 hover_nav">Библиотека</a></li>
+			{% if user.is_authenticated %}
+				<li><a href="/ru/profile" class="text-25 hover_nav">Профайл</a></li>
+				<li><a href="{% url 'logout' %}?next=/ru" class="text-25 hover_nav">Выход</a></li>
+			{% else %}
+				<li><a href="/ru/login" class="text-25 hover_nav">Вход</a></li>
+			{% endif %}
+			{% if user.is_authenticated %}
+				<li><a href="/ru/profile" class="text-25 hover_nav">У вас {{ user.profile.tokens_left }}
+					<img src="{{ rompas.symbol.url }}" style="vertical-align: top" height="20px" width="20px">
+				</a>
+					{% endif %}
+			</li>
+			<li>
+				{% with total_items=cart|length %}
+					<a data-remodal-target="cart" href="#!" class="cart hover_nav"><span class="counter">{{ total_items }}</span></a>
+				{% endwith %}
+			</li>
+		</ul>
+	</nav>
+</header>
+<div class="bg" style="color: #737f8a;">
+    <div class="top-content">
+        <div class="container" style="width: 60%">
+            <div class="row">
+                <div class="col-sm-12 form-box">
+                    <form role="form" action="" method="post" class="f1 shadow" style="background-color: rgba(115,127,138, 0.7);">
+                        {% csrf_token %}
+                        <h3 style="color: white">Регистрация</h3>
+                        <div class="f1-steps">
+                            <div class="f1-progress">
+                                <div class="f1-progress-line" data-now-value="3" data-number-of-steps="3" style="width: 33%;"></div>
+                            </div>
+                            <div class="f1-step active">
+                                <div class="f1-step-icon" style="background: #0ec6c9">
+                                    <img  src="{% static '/theme/images/icon/nick_name.png' %}" height="22" width="22">
+                                </div>
+                            </div>
+                            <div class="f1-step">
+                                <div class="f1-step-icon">
+                                    <img  src="{% static '/theme/images/icon/email.png' %}" height="22" width="22">
+                                </div>
+                            </div>
+                            <div class="f1-step">
+                                <div class="f1-step-icon">
+                                    <img  src="{% static '/theme/images/icon/password.png' %}" height="22" width="22">
+                                </div>
+                            </div>
+                            <div class="f1-step">
+                                <div class="f1-step-icon">
+                                    <img  src="{% static '/theme/images/icon/subscribes.png' %}" height="22" width="22">
+                                </div>
+                            </div>
+                        </div>
+
+                        <fieldset>
+                            <h4 style="color: white">Имя:</h4>
+                            <h4 style="color: #8c0100; display: none; font-weight: 700" id="name">Уже существует</h4>
+                            <input style="width: 50%; margin:0 auto" type="text" name="username" class="f1-first-name form-control" maxlength="150" minlength="3" required="" id="id_username">
+                            <br>
+                            <div class="f1-buttons">
+                                <button type="button" class="btn btn-next" style="background-color: #0ec6c9;">Продолжить</button>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <h4 style="color: white">Email:</h4>
+                            <h4 style="color: #8c0100; display: none; font-weight: 700" id="email">Уже существует</h4>
+                            <input style="width: 50%; margin:0 auto" type="text" name="email" class="f1-first-name form-control" maxlength="254" required="" id="id_email">
+                            <br>
+                            <div class="f1-buttons">
+                                <button type="button" class="btn btn-previous" style="background-color: #08c93b">Предыдущий</button>
+                                <button type="button" class="btn btn-next" style="background-color: #0ec6c9;">Продолжить</button>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <h4 style="color: white">Пароль:</h4>
+                            <h4 style="color: #8c0100; display: none; font-weight: 700" id="length">Пароль должен содержать не менее 7 символов</h4>
+                            <h4 style="color: #8c0100; display: none; font-weight: 700" id="password">Пароли не соответствуют</h4>
+                            <input style="width: 50%; margin:0 auto" type="password" name="password1" class="f1-first-name form-control" minlength="6" required="" id="id_password1">
+                            <h4 style="color: white">Подтвердите Пароль:</h4>
+                            <input style="width: 50%; margin:0 auto" type="password" name="password2" class="f1-first-name form-control" minlength="6" required="" id="id_password2">
+                            <br>
+                            <div class="f1-buttons">
+                                <button type="button" class="btn btn-previous" style="background-color: #08c93b">Предыдущий</button>
+                                <button type="button" class="btn btn-next" style="background-color: #0ec6c9;">Продолжить</button>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <h4 style="color: white">Подписка:</h4>
+                            <br>
+                            <div class="pricetab change one" style="margin:0 auto; display: inline-block">
+                                <h1> {{ one.name_ru }} </h1>
+                                <div class="price">
+                                    <h2> {{ one.price }}$ </h2>
+                                </div>
+                                <div class="infos">
+                                    <h3> {{ one.token }} <img src="{{ rompas.symbol.url }}" width="20px" height="20px"> </h3>
+                                </div>
+                                <div class="pricefooter">
+                                    <div class="button">
+                                        <a id="one" href="#">Выбрать</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricetab change two" style="margin:0 auto; display: inline-block">
+                                <h1> {{ two.name_ru }} </h1>
+                                <div class="price">
+                                    <h2> {{ two.price }}$ </h2>
+                                </div>
+                                <div class="infos">
+                                    <h3> {{ two.token }} <img src="{{ rompas.symbol.url }}" width="20px" height="20px"> </h3>
+                                </div>
+                                <div class="pricefooter">
+                                    <div class="button">
+                                        <a id="two" href="#">Выбрать</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricetab change three" style="margin:0 auto; display: inline-block">
+                                <h1> {{ three.name_ru }} </h1>
+                                <div class="price">
+                                    <h2> {{ three.price }}$ </h2>
+                                </div>
+                                <div class="infos">
+                                    <h3> {{ three.token }} <img src="{{ rompas.symbol.url }}" width="20px" height="20px"> </h3>
+                                </div>
+                                <div class="pricefooter">
+                                    <div class="button">
+                                        <a id="three" href="#">Выбрать</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricetab change four" style="margin:0 auto; display: inline-block">
+                                <h1> {{ four.name_ru }} </h1>
+                                <div class="price">
+                                    <h2> {{ four.price }}$ </h2>
+                                </div>
+                                <div class="infos">
+                                    <h3> {{ four.token }} <img src="{{ rompas.symbol.url }}" width="20px" height="20px"> </h3>
+                                </div>
+                                <div class="pricefooter">
+                                    <div class="button">
+                                        <a id="four" href="#">Выбрать</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricetab change five" style="margin:0 auto; display: inline-block">
+                                <h1> {{ five.name_ru }} </h1>
+                                <div class="price">
+                                    <h2> {{ five.price }}$ </h2>
+                                </div>
+                                <div class="infos">
+                                    <h3> {{ five.token }} <img src="{{ rompas.symbol.url }}" width="20px" height="20px"> </h3>
+                                </div>
+                                <div class="pricefooter">
+                                    <div class="button">
+                                        <a id="five" href="#">Выбрать</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <select name="subscription" required="" id="id_subscription" style="display: none">
+                                <option value="1" selected="">{{ one.name_ru }}</option>
+                                <option value="2">{{ two.name_ru }}</option>
+                                <option value="3">{{ three.name_ru }}</option>
+                                <option value="4">{{ four.name_ru }}</option>
+                            </select>
+                            <h4 style="color: white"><input type="checkbox" required> Я согласен c <a href="/ru/private_policy" target="_blank">Частной Политикой</a> и <a href="" target="_blank">условиями использования</a></h4>
+                            <div class="f1-buttons">
+                                <button type="button" class="btn btn-previous" style="background-color: #08c93b">Предыдущий</button>
+                                <button type="submit" value="save" style="background-color: #0ec6c9;" class="btn btn-submit">Submit</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'sign_in/assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'sign_in/assets/js-form/jquery.backstretch.min.js' %}"></script>
+<script src="{% static 'sign_in/assets/js-form/scripts.js' %}"></script>
+<script src="{% static 'sign_in/assets/js-form/placeholder.js' %}"></script>
+<script >
+  $(document).ready(function () {
+    $.HSCore.components.HSSelect.init('.js-custom-select');
+  });
+
+  $( document ).ready(function() {
+        window.setInterval(function(){
+            var users = {{ users|safe }};
+            var name = document.getElementById('id_username').value;
+            if ($.inArray(name, users) != -1) {
+                document.getElementById("name").style.display = "block";
+            } else {
+                document.getElementById("name").style.display = "none";
+            }
+            var emails = {{ emails|safe }};
+            var email = document.getElementById('id_email').value;
+            if ($.inArray(email, emails) != -1) {
+                document.getElementById("email").style.display = "block";
+            } else {
+                document.getElementById("email").style.display = "none";
+            }
+            var pas1 = document.getElementById('id_password1').value;
+            var pas2 = document.getElementById('id_password2').value;
+            if (pas1.length <= 6) {
+                document.getElementById("length").style.display = "block";
+            } else {
+                document.getElementById("length").style.display = "none";
+            }
+            if (pas1 != pas2) {
+                document.getElementById("password").style.display = "block";
+            } else {
+                document.getElementById("password").style.display = "none";
+            }
+
+
+        }, 300);
+    });
+
+  $(document).ready(function() {
+      $('#one').click(function() {
+          var items = document.getElementsByClassName("change");
+          for (var i=0; i < items.length; i++) {
+              items[i].style.background = "";
+          }
+          var item = document.getElementsByClassName("one");
+          item[0].style.background = "#5EFEFF";
+          newselectedIndex = 1;
+            jQuery("#id_subscription option:selected").removeAttr("selected");
+            jQuery("#id_subscription option[value='"+newselectedIndex +"']").attr('selected', 'selected');
+      });
+      $('#two').click(function() {
+          var items = document.getElementsByClassName("change");
+          for (var i=0; i < items.length; i++) {
+              items[i].style.background = "";
+          }
+          var item = document.getElementsByClassName("two");
+          item[0].style.background = "#5EFEFF";
+          newselectedIndex = 2;
+            jQuery("#id_subscription option:selected").removeAttr("selected");
+            jQuery("#id_subscription option[value='"+newselectedIndex +"']").attr('selected', 'selected');
+      });
+      $('#three').click(function() {
+          var items = document.getElementsByClassName("change");
+          for (var i=0; i < items.length; i++) {
+              items[i].style.background = "";
+          }
+          var item = document.getElementsByClassName("three");
+          item[0].style.background = "#5EFEFF";
+          newselectedIndex = 3;
+            jQuery("#id_subscription option:selected").removeAttr("selected");
+            jQuery("#id_subscription option[value='"+newselectedIndex +"']").attr('selected', 'selected');
+      });
+      $('#four').click(function() {
+          var items = document.getElementsByClassName("change");
+          for (var i=0; i < items.length; i++) {
+              items[i].style.background = "";
+          }
+          var item = document.getElementsByClassName("four");
+          item[0].style.background = "#5EFEFF";
+          newselectedIndex = 4;
+            jQuery("#id_subscription option:selected").removeAttr("selected");
+            jQuery("#id_subscription option[value='"+newselectedIndex +"']").attr('selected', 'selected');
+      });
+      $('#five').click(function() {
+          var items = document.getElementsByClassName("change");
+          for (var i=0; i < items.length; i++) {
+              items[i].style.background = "";
+          }
+          var item = document.getElementsByClassName("five");
+          item[0].style.background = "#5EFEFF";
+          newselectedIndex = 5;
+            jQuery("#id_subscription option:selected").removeAttr("selected");
+            jQuery("#id_subscription option[value='"+newselectedIndex +"']").attr('selected', 'selected');
+      });
+  });
+</script>
+<script type="text/javascript" src="{% static '/theme/js/script.js' %}"></script>
+<script src="{% static '/theme/plugins/remodal/remodal.js' %}"></script>
+</body>
+</html>

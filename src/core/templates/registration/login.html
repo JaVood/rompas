@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang='en' class=''>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="9F0Kzdn6pPA21NpLkUXhgqdLyJ2zLpAcqi4RTPYBqao" />
+    <title>Login</title>
+	<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js'></script>
+	<link href="{% static '/login/style.css' %}" rel="stylesheet">
+	<style class="cp-pen-styles"></style>
+</head>
+<body>
+<div class="login">
+	<h1>Login</h1>
+	{% if form.errors %}
+            <h4 style="color: red; margin: 10px; text-align: center;">Wrong login or password</h4>
+            {% endif %}
+    <form method="post">
+		{% csrf_token %}
+    	<input type="text" type="text" name="username" placeholder="Username" required="required" />
+        <input type="password" type="password" name="password" placeholder="Password" required="required" style="margin-bottom: 0px;"/>
+		<h5 style="margin: 10px;"><a style="color: white; text-decoration: none;" href="/accounts/password_reset/">Forgot password?</a></h5>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+    </form>
+    <h5 style="margin: 10px;"><a style="color: white; text-decoration: none;" href="/sign_in">Do not have an account, create it</a></h5>
+</div>
+</body>
+</html>

@@ -1,0 +1,478 @@
+{% extends 'core/base_ru.html' %}
+{% load static %}
+{% block title %}Профайл{% endblock %}
+{% block extra_css %}
+<style>
+#container {
+  width:80%;
+  min-width:1100px;
+  min-height:500px;
+  margin:3% auto 0 auto;
+}
+.pricetab {
+  width:15%;
+  min-width:220px;
+  background: linear-gradient(#555, #444);
+  /*float:left;*/
+  /*margin-top:.2%;*/
+  box-shadow:1px 1px 5px rgba(0, 0, 0, .5);
+}
+.pricetabmid {
+  width:20%;
+  min-width:220px;
+  background: linear-gradient( #57cbcc, rgba(94, 254, 255, 0.44));
+  float:left;
+  box-shadow:0 0  15px rgba(0, 0, 0, 1);
+  position:relative;
+}
+.priceheader {
+  width:100%;
+  height:60px;
+  background-image: -o-linear-gradient(bottom ,#444 , #555);
+  background-image: -webkit-linear-gradient(bottom ,#444 , #555);
+  background-image: -o-linear-gradient(bottom ,#444 , #555);
+  background-image: -moz-linear-gradient(bottom ,#444 , #555);
+  background-image: linear-gradient(to bottom , #444 , #555);
+  box-shadow:0 2px 12px rgba(0, 0, 0, .5);
+}
+.price {
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:1px solid #57cbcc;
+  margin:5% auto 0 auto;
+  text-align:center;
+}
+.pricemid {
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:1px solid #444;
+  margin:5% auto 0 auto;
+  text-align:center;
+}
+.infos{
+  margin-top:10%;
+}
+.pricefooter {
+  width:100%;
+  height:50px;
+  margin-top:10%;
+  background:#333;
+}
+.pricefootermid {
+  width:100%;
+  height:50px;
+  margin-top:10%;
+  background:#57cbcc;
+}
+/* Typo */
+.title{
+  font-family:arial;
+  color:#fff;
+  font-size:38px;
+  font-weight:normal;
+  text-align:center;
+  text-transform:uppercase;
+  text-shadow: 1px 2px 5px rgba(0,0,5,0.2);
+  margin:auto;
+}
+h1{
+  font-size:18px;
+  color:#fff;
+  text-align:center;
+  line-height:3;
+}
+h2{
+  text-align:center;
+  font-size:42px;
+  color:#fff;
+	margin-top: 35px;
+}
+sub{
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+}
+h3{
+  font-size:14px;
+  font-weight:normal;
+  text-align:center;
+  color:#fff;
+  line-height:1;
+}
+.button a{
+  color:#fff;
+  font-size:17px;
+  font-weight:bold;
+  text-decoration:none;
+  line-height:3;
+}
+.buttonmid a{
+  color:#fff;
+  font-size:17px;
+  font-weight:bold;
+  text-decoration:none;
+  line-height:3;
+}
+.credit{
+  color:#fff;
+  font-size:16px;
+  font-weight:normal;
+  text-align:left;
+  text-shadow: 1px 2px 5px rgba(0,0,5,0.2);
+  margin-left:5%;
+  line-height:1.3;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+/* Buttons */
+.button{
+  width:50%;
+  height:50px;
+  margin:0 auto 0 auto;
+  background:#57cbcc;
+  text-align:center;
+  cursor:pointer;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+.button:hover{
+  width:60%;
+}
+.buttonmid{
+  width:50%;
+  height:50px;
+  margin:0 auto 0 auto;
+  background:#333;
+  text-align:center;
+  cursor:pointer;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+.buttonmid:hover{
+  width:60%;
+}
+</style>
+{% endblock %}
+{% block content %}
+<section id="testimonial" class="testimonial overly section bg-2">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div id="testimonials" class="wow fadeInUp" data-wow-duration="500ms" data-wow-delay="100ms">
+					<div class="item text-center">
+						<div class="client-thumb">
+							<img src="{% static '/theme/images/icon/nick_name.png' %}" class="img-responsive size-115">
+						</div>
+						<div class="client-info">
+							<div class="client-meta">
+								<h3>{{ user.username }}</h3>
+                                <h4>Email подписка
+									{% if profile.email_subscription %}
+										<a class="sub-active" data-remodal-target="{{ profile.id }}" href="#!">активна</a>
+									{% else %}
+										<a class="sub-disable" data-remodal-target="{{ profile.id }}false" href="#!">неактивна</a>
+									{% endif %}
+								</h4>
+							</div>
+						</div>
+						<br>
+						<h3>У вас {{ profile.tokens_left }}<img src="{{ rompas.symbol.url }}" style="vertical-align: top" height="25px" width="25px"></h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="remodal sub-change" data-remodal-id="{{ profile.id }}" style="background-color: #353b43;">
+		<button class="remodal-close" data-remodal-action="close" id="subscription_cancel"></button>
+    	<h1>Отменить email подписку?</h1>
+		<br><br>
+		<button class="btn btn-success mr-3" onclick="cancel()">Да</button>
+		<button class="btn btn-danger" data-remodal-action="cancel">Закрыть</button>
+	</div>
+	<div class="remodal sub-change" data-remodal-id="{{ profile.id }}false" style="background-color: #353b43;">
+		<button class="remodal-close" data-remodal-action="close" id="subscription_active"></button>
+		<h1>Активировать email подписку?</h1>
+		<br><br>
+		<button class="btn btn-success mr-3" onclick="active()">Да</button>
+		<button class="btn btn-danger" data-remodal-action="cancel">Закрыть</button>
+	</div>
+	<form method="post" style="display: none">
+		{% csrf_token %}
+		<label for="id_subscription">Подписка:</label>
+		<input type="checkbox" name="subscription" id="id_subscription">
+		<button class="btn btn-success mr-3" id="subscription" type="submit">Да</button>
+	</form>
+</section>
+<section id="blog" class="section">
+	<div class="container">
+		<div class="row">
+			<div class="clearfix">
+				<article class="col-md-4 col-sm-6 col-xs-12 clearfix wow fadeInUp" data-wow-duration="500ms">
+					<div class="post-block">
+						<div class="media-wrapper">
+							<img src="{% static '/theme/images/blog/profile_purchase_history.png' %}" alt="amazing caves coverimage" class="img-responsive">
+						</div>
+						<div class="content">
+							<h3 style="text-align: center;"><a href="/ru/profile/history">История покупок</a></h3>
+                            <div style="text-align: center;">
+							    <a class="btn btn-transparent" href="/ru/profile/history">Глянуть</a>
+                            </div>
+						</div>
+					</div>
+				</article>
+				<article class="col-md-4 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="400ms">
+					<div class="post-block">
+						<div class="media-wrapper">
+							<img src="{% static '/theme/images/blog/profile_change_password.png' %}" alt="amazing caves coverimage" class="img-responsive">
+						</div>
+						<div class="content">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h3 class="change_pass">Изменить пароль</h3>
+                                  <h5 class="mb-0 marg-0-center">
+                                      <a class="btn btn-transparent" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Изменить</a>
+                                  </h5>
+                                </div>
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion" style="text-align: center;">
+									<div class="card-body">
+										<form method="post">
+											{% csrf_token %}
+											<div class="modal-body form-horizontal top_0">
+												<div class="control-group">
+													<label for="id_old_password" class="control-label">Действующий пароль</label>
+													<div class="controls">
+														<input type="password" name="old_password" autofocus="" required="" id="id_old_password">
+													</div>
+												</div>
+												<div class="control-group">
+													<label for="id_new_password1" class="control-label">Новый пароль</label>
+													<div class="controls">
+														<input type="password" name="new_password1" required="" id="id_new_password1">
+													</div>
+												</div>
+												<div class="control-group">
+													<label for="id_new_password2" class="control-label">Подтвердите пароль</label>
+													<div class="controls">
+														<input type="password" name="new_password2" required="" id="id_new_password2">
+													</div>
+												</div>
+											</div>
+											<button type="submit" class="btn btn-transparent change_color">Изменить</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</article>
+                <article class="col-md-4 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="400ms">
+					<div class="post-block">
+						<div class="media-wrapper">
+							<img src="{% static '/theme/images/blog/profile_change_email.png' %}" alt="amazing caves coverimage" class="img-responsive">
+						</div>
+						<div class="content">
+                            <div class="card-header" id="headingTwo">
+								<h3 class="change_pass">Изменить email</h3>
+								<h5 class="mb-0 marg-0-center">
+									<a class="btn btn-transparent" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">Изменить</a>
+								</h5>
+							</div>
+							<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion" style="text-align: center;">
+								<div class="card-body">
+									<form method="post">
+										{% csrf_token %}
+										<div class="modal-body form-horizontal top_0">
+											<div class="control-group">
+												<label for="id_email" class="control-label">Новый Email</label>
+												<div class="controls">
+													<input type="text" name="email" placeholder="Email" maxlength="254" required="" id="id_email">
+												</div>
+											</div>
+										</div>
+										<button type="submit" class="btn btn-transparent change_color">Изменить</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</article>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="pricing" class="pricing section top_0">
+	<div class="container">
+		<div class="row" style="text-align: center;">
+			<div class="title text-center wow fadeInDown" data-wow-duration="500ms">
+				<h2><span class="color">Подписка</span></h2>
+				<div class="border"></div>
+			</div>
+			{% if profile.subscription_active %}
+			<div class="pricetab" style="margin:0 auto; display: inline-block">
+				<h1> {{ profile.subscription.name_ru }} </h1>
+				<div class="price">
+					<h2> {{ profile.subscription.price }} {{ profile.subscription.symbol }} </h2>
+				</div>
+				<div class="infos">
+					<h3> {{ profile.subscription.token }} <img src="{{ rompas.symbol.url }}" width="20px" height="20px"> </h3>
+					<h3> {{ profile.tokens_left }} <img src="{{ rompas.symbol.url }}" width="20px" height="20px"> Осталось</h3>
+					<h3> Заканчивается: {{ profile.subscription_end|date:"d-m-Y" }}</h3>
+				</div>
+				<div class="pricefooter">
+					<div class="button">
+						<a data-remodal-target="change" href="#!">Изменить</a>
+					</div>
+				</div>
+				<div class="pricefooter">
+					<div class="button" id="cancel_subscription">
+						<a data-remodal-target="cancel_sub" href="#!">Отменить</a>
+					</div>
+				</div>
+			</div>
+			<div class="pricetab" style="margin:0 auto; display: inline-block; vertical-align:top;">
+				<div class="price">
+					<h2 data-remodal-target="add_tokens" href="#!">Add</h2>
+				</div>
+				<div class="infos">
+					<h3> Добавить rompas токенов</h3>
+				</div>
+			</div>
+			{% else %}
+			<div class="pricetab" style="margin:0 auto; display: inline-block">
+				<div class="price">
+					<h2 data-remodal-target="buy_subscription" href="#!">Buy</h2>
+				</div>
+				<div class="infos">
+					<h3> Купить подписку</h3>
+				</div>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+</section>
+<div class="remodal remodal-50" data-remodal-id="add_tokens" style="background-color: #353b43; width: 80%; max-width: 80%;" id="buy_tokens">
+    <button class="remodal-close" data-remodal-action="{{ product.id }}close"></button>
+	<h1 class="product-detail-name">Добавить больше rompas</h1>
+	{% for token in tokens %}
+		<div class="pricetab" style="margin:0 auto; display: inline-block">
+			<h1> {{ token.name_ru }} </h1>
+			<div class="price">
+				<h2> {{ token.price }}$ </h2>
+			</div>
+			<div class="infos">
+				<h3> {{ token.description }} </h3>
+			</div>
+			<div class="pricefooter">
+				<div class="button">
+					<a onclick="tokens('{{ token.name }}')">Купить</a>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+	<br><br>
+	<button type="button" class="btn btn-lg close_btn" data-remodal-action="cancel">Закрыть</button>
+</div>
+<div class="remodal remodal-50" data-remodal-id="cancel_sub" style="background-color: #353b43; width: 50%; max-width: 50%;" id="cancel_sub">
+    <button class="remodal-close" data-remodal-action="{{ product.id }}close"></button>
+	<h1 class="product-detail-name">Вы уверены?</h1>
+	<div id="answer_cancel_sub"></div>
+	<br><br>
+	<button type="button" class="btn btn-lg yes_btn" onclick="subscription_cancel()">Да</button>
+	<button type="button" class="btn btn-lg close_btn" data-remodal-action="cancel">Закрыть</button>
+</div>
+<div class="remodal remodal-60" data-remodal-id="buy_subscription" style="background-color: #353b43; width: 60%; max-width: 60%;" id="buy_subscription">
+    <button class="remodal-close" data-remodal-action="{{ product.id }}close"></button>
+	<h1 class="product-detail-name">Купить подписку</h1>
+	<br>
+	{% for sub in subscription %}
+		<div class="pricetab" style="margin:0 auto; display: inline-block">
+			<h1> {{ sub.name_ru }} </h1>
+			<div class="price">
+				<h2> {{ sub.price }}$ </h2>
+			</div>
+			<div class="infos">
+				<h3> {{ sub.token }} <img src="{{ rompas.symbol.url }}" width="20px" height="20px"> </h3>
+			</div>
+			<div class="pricefooter">
+				<div class="button">
+					{% if user.is_authenticated %}
+						<a onclick="subscription('{{ sub.name }}')">Купить</a>
+					{% else %}
+						<a href="/login">Купить</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+	<div class="block">
+	<form method="post">
+		{% csrf_token %}
+		<br><br>
+	<button type="button" class="btn btn-lg close_btn" data-remodal-action="cancel">Закрыть</button>
+	</form>
+	</div>
+</div>
+<div class="remodal remodal-60" data-remodal-id="change" style="background-color: #353b43; width: 60%; max-width: 60%;" id="change_sub">
+    <button class="remodal-close" data-remodal-action="{{ product.id }}close"></button>
+	<h1 class="product-detail-name">Изменить подписку</h1>
+	<br>
+	{% for sub in subscription %}
+	{% if sub.id != profile.subscription.id %}
+	<div class="pricetab" style="margin:0 auto; display: inline-block">
+			<h1> {{ sub.name_ru }} </h1>
+			<div class="price">
+				<h2> {{ sub.price }}$ </h2>
+			</div>
+			<div class="infos">
+				<h3> {{ sub.token }} <img src="{{ rompas.symbol.url }}" width="20px" height="20px"> </h3>
+			</div>
+			<div class="pricefooter">
+				<div class="button">
+					{% if user.is_authenticated %}
+						<a onclick="subscription_update('{{ sub.name }}')">Купитьgit</a>
+					{% else %}
+						<a href="/login">Купить</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	{% endif %}
+	{% endfor %}
+	<div class="block">
+	<form method="post">
+		{% csrf_token %}
+		<br><br>
+	<button type="button" class="btn btn-lg close_btn" data-remodal-action="cancel">Закрыть</button>
+	</form>
+	</div>
+</div>
+{% block footer %}
+{% include 'core/footer_ru.html' %}
+{% endblock %}
+{% endblock %}
+{% block extra_js %}
+<script>
+	function cancel() {
+  		document.getElementById("id_subscription").checked = false;
+  		document.getElementById("subscription").click();
+  		document.getElementById("subscription_cancel").click();
+		window.location.href = window.location.href
+		location.reload();
+	}
+	function active() {
+  		document.getElementById("id_subscription").checked = true;
+  		document.getElementById("subscription").click();
+  		document.getElementById("subscription_active").click();
+		window.location.href = window.location.href
+		location.reload();
+	}
+</script>
+{% endblock %}

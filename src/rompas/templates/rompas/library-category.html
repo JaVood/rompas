@@ -1,0 +1,205 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load rompas_extras %}
+{% block title %}Library{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    p {color: #afbac4}
+</style>
+{% endblock %}
+{% block content %}
+<div class="flex">
+    <div class="sidenav">
+        <input class="form-control search-library icon opacity-05" id="search" name="search" type="text" maxlength="128" oninput="Search()" placeholder="Search" aria-label="Search">
+        {% for category in categories %}
+            {% if category == active_category %}
+                <button class="dropdown-btn active">{{ category.name }}
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container" style="display: block">
+                    <a onclick="Category('{{ category.name|cut:" " }}')" id="{{ category.name }}">All</a>
+                    {% for cat in category.cat %}
+                    <button class="dropdown-btn">{{ cat.name }}
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container">
+                        <a onclick="Category('{{ category.name|cut:" " }}{{ cat.name|cut:" " }}')" class="left-35">All</a>
+                        {% for subcategory in cat.sub %}
+                            <a onclick="Category('{{ category.name|cut:" " }}{{ cat.name|cut:" " }}{{ subcategory.name|cut:" " }}')" class="left-35">{{ subcategory.name }}</a>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <button class="dropdown-btn">{{ category.name }}
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                    <a onclick="Category('{{ category.name|cut:" " }}')">All</a>
+                        {% for cat in category.cat %}
+                            <button class="dropdown-btn">{{ cat.name }}
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-container">
+                                <a onclick="Category('{{ category.name|cut:" " }}{{ cat.name|cut:" " }}')" class="left-35">All</a>
+                                {% for subcategory in cat.sub %}
+                                    <a onclick="Category('{{ category.name|cut:" " }}{{ cat.name|cut:" " }}{{ subcategory.name|cut:" " }}')" class="left-35">{{ subcategory.name }}</a>
+                                {% endfor %}
+                            </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="library">
+        {% for product in products %}
+        <div style="display: none" class="{{ product.name }} product {{ product.category.category.main_category.name|cut:" " }} {{ product.category.category.main_category.name|cut:" " }}{{ product.category.category.name|cut:" " }} {{ product.category.category.main_category.name|cut:" " }}{{ product.category.category.name|cut:" " }}{{ product.category.name|cut:" " }}">
+            <div class="block2">
+                <div class="block2-img wrap-pic-w of-hidden pos-relative">
+                    <div class="img-hover-zoom--brightness photo">
+                        <a data-remodal-target="{{ product.id }}" href="#!">
+                            <img src="{{ product.main_photo.url }}" alt="IMG-PRODUCT" class="width-100">
+                            <div class="carousel-caption price-title product_price" style="background-color: #292F36; opacity: 1">
+                                <h4 align="left" class="search product_name" style="font-size: 14px">{{ product.name }}</h4>
+                                {% if user.is_authenticated %}
+                                    {% if user|download_check:product %}
+                                        <a href="/profile/history" class="product_currency" align="right">
+                                            <span>
+                                                <img class="g-pos-rel g-top-1 g-mr-8" src="{% static 'theme/images/icon/download.png' %}" height="18px" width="18px">
+                                            </span>
+                                        </a>
+                                    {% else %}
+                                        <h4 class="product_currency" align="right">{{ product.price }} <img src="{{ product.currency.symbol.url }}" class="vertical_top" height="19px" width="19px"></h4>
+                                    {% endif %}
+                                {% else %}
+                                    <h4 class="product_currency" align="right">{{ product.price }} <img src="{{ product.currency.symbol.url }}" class="vertical_top" height="18px" width="18px" ></h4>
+                                {% endif %}
+                            </div>
+                        </a>
+                        <a href="" class="block2-btn-addwishlist hov-pointer trans-0-4">
+                            <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+                            <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% for product in products %}
+<div class="remodal remodal-70" data-remodal-id="{{ product.id }}" style="width: 80%">
+    <button class="remodal-close" data-remodal-action="close"></button>
+    <h1>{{ product.name }}</h1>
+    <h2>{{ product.category }}</h2>
+    <div class="main object_contain">
+        {% if product.category.category.main_category_id == 1 %}
+        <div class="block2">
+            <div class="slider slider-for">
+                {% for image in product.image %}
+                <div class="block2-img wrap-pic-w of-hidden pos-relative">
+                    <img src="{{ image.photo.url }}" alt="IMG-PRODUCT" class="inline_d center" style="height: auto; width: auto">
+                </div>
+                {% endfor %}
+                {% if product.you_tube %}
+                <div class="you_tube">
+                    <iframe src="{{ product.you_tube }}" width="100%" height="100%" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                 </div>
+                {% endif %}
+            </div>
+        </div>
+        <br>
+        <div class="slider slider-nav">
+            {% for image in product.image %}
+            <div>
+                <img src="{{ image.photo.url }}" alt="IMG-PRODUCT" class="inline_d center">
+            </div>
+            {% endfor %}
+            {% if product.you_tube %}
+            <div>
+                <img src="{% static '/theme/images/video.png' %}" alt="IMG-PRODUCT" class="width-100 center">
+            </div>
+            {% endif %}
+        </div>
+        {% else %}
+        <div class="block2">
+            <div class="slider vertical-center">
+                {% for image in product.image %}
+                <div class="block2-img wrap-pic-w of-hidden pos-relative">
+                    <img src="{{ image.photo.url }}" alt="IMG-PRODUCT" class="inline_d center">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="container remodal_text">
+        <div class="price-title" style="background-color: #292F36; opacity: 1">
+            <p class="left_50"><strong class="value">{{ product.price }} <img src="{{ product.currency.symbol.url }}" class="remodal_currency"></strong></p>
+            <p class="right_50"><strong class="value">{{ product.file_size }} mb</strong></p>
+        </div>
+        <div class="price-title padding-20" style="background-color: #292F36; opacity: 1">
+            <br>
+            <p> {{ product.description|linebreaks }}</p>
+            {% if product.url %}
+                <a href="{{ product.url }}" class="btn" style="background-color: #353b43" target="_blank">Get it on Unity Asset Store</a>
+            {% endif %}
+        </div>
+        <br>
+        {% if product.currency_id == 1 %}
+        <form id="myForm{{ product.id }}"  action="{% url "cart:CartAdd" product.id %}" method="post" class="add">
+            <div class="flex-m flex-w p-t-10">
+                <div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
+                    <select class="selection-2 none_d" name="quantity" id="id_quantity">
+                        <option value="1" selected>1</option>
+                    </select>
+                    <input type="hidden" name="update" value="False" id="id_update">
+                </div>
+            </div>
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+            {% if user|download_check:product %}
+                <a href="{{ product.file.url }}" class="btn btn-lg download">Download</a>
+            {% else %}
+                <button type="submit" class="btn btn-lg add_to_cart">Add to cart</button>
+            {% endif %}
+        {% else %}
+                <button type="submit" class="btn btn-lg add_to_cart">Add to cart</button>
+        {% endif %}
+        </form>
+        {% else %}
+            {% if user.is_authenticated %}
+                {% if user|download_check:product %}
+                    <a href="{{ product.file.url }}" class="btn btn-lg download">Download</a>
+                {% else %}
+                    {% if user.profile.tokens_left >= product.price %}
+                        <form method="post">
+                            {% csrf_token %}
+                            <select name="user" required="" id="id_user" class="none_d">
+                                <option value="{{ user.id }}" selected="">{{ user.username }}</option>
+                            </select>
+                            <select name="product" required="" id="id_product" class="none_d">
+                                <option value="{{ product.id }}" selected="">{{ product.name }}</option>
+                            </select>
+                            <button type="submit" class="btn btn-lg add_to_cart">Buy</button>
+                        </form>
+                    {% else %}
+                        <a href="/profile" class="btn btn-lg add_to_cart">Not enough tokens</a>
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                <a href="/login" class="btn btn-lg add_to_cart">Buy</a>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
+{% block extra_js %}
+<script>
+    window.onload = function() {
+      Category('{{ active_category.name|cut:" " }}');
+    };
+</script>
+{% endblock %}

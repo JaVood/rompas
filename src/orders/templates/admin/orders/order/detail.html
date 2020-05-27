@@ -1,0 +1,118 @@
+{% extends "admin/base_site.html" %}
+
+{% load static %}
+
+{% block title %}
+  Заказ {{ order.id }} {{ block.super }}
+{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <a href="{% url "admin:index" %}">Головна</a> &rsaquo;
+  <a href="{% url "admin:orders_order_changelist" %}">Замовлення</a> &rsaquo;
+  <a href="{% url "admin:orders_order_change" order.id %}">Замовлення {{ order.id }}</a> &rsaquo;
+  Деталі
+</div>
+{% endblock %}
+
+{% block content %}
+  <h1>Замовлення {{ order.id }}</h1>
+  <ul class="object-tools">
+    <li>
+      <a href="#" onclick="window.print()">Роздрукувати замовлення</a>
+    </li>
+  </ul>
+  <table width="100%">
+    <tr>
+      <th>Створений</th>
+      <td>{{ order.created }}</td>
+    </tr>
+    <tr>
+      <th>Замовник</th>
+      <td>{{ order.name }}</td>
+    </tr>
+    <tr>
+      <th>E-mail</th>
+      <td><a href="mailto:{{ order.email }}">{{ order.email }}</a></td>
+    </tr>
+	<tr>
+      <th>Phone</th>
+      <td><a href="mailto:{{ order.email }}">{{ order.phone_number }}</a></td>
+    </tr>
+    <tr>
+      <th>Спосіб доставки:</th>
+      <td>{{ order.delivery.name_ua }}</td>
+    </tr>
+    {% if order.delivery.id == 1 %}
+    <tr>
+      <th>Місто:</th>
+      <td>{{ order.nova_city.city }}</td>
+    </tr>
+    <tr>
+      <th>Відділення:</th>
+      <td>{{ order.nova_warehouse.title }}</td>
+    </tr>
+    {% else %}
+    <tr>
+      <th>Місто:</th>
+      <td>{{ order.city }}</td>
+    </tr>
+    <tr>
+      <th>Адресс:</th>
+      <td>{{ order.address }}</td>
+    </tr>
+    <tr>
+      <th>Поштовий індекс:</th>
+      <td>{{ order.postal_code }}</td>
+    </tr>
+    {% endif %}
+    <tr>
+      <th>Номер декларації:</th>
+      <td>{{ order.declaration }}</td>
+    </tr>
+    <tr>
+      <th>Спосіб оплати</th>
+      <td>{{ order.payment_method }}</td>
+    </tr>
+    {% if order.payment_method.id == 1 %}
+    <tr>
+      <th>Статус оплати</th>
+      <td>{{ order.paid_status }}</td>
+    </tr>
+    {% endif %}
+    <tr>
+      <th>Статус замовлення</th>
+      <td>{{ order.order_status }}</td>
+    </tr>
+  </table>
+
+  <div class="module">
+    <div class="tabular inline-related list-related">
+      <table>
+        <h2>Замовлені товари</h2>
+        <thead>
+          <tr>
+            <th>Товар</th>
+            <th>Ціна</th>
+            <th>Кількість</th>
+            <th>Вартість всього</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in order.items.all  %}
+            <tr class="row{% cycle "1" "2" %}">
+              <td>{{ item.product.product_group.name_ua }} {{ item.product.name_ua }}</td>
+              <td>{{ item.price }} грн.</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.get_cost }} грн.</td>
+            </tr>
+          {% endfor %}
+          <tr class="total">
+            <td colspan="3">Всього</td>
+            <td class="num">{{ order.get_total_cost }} грн.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Help{% endblock %}
+{% block content %}
+<section class="hero-area">
+	<div class="block z-index-10">
+		<h1>Help</h1>
+	</div>
+</section>
+<br>
+<section id="contact-us" class="contact-us section-bg">
+	<div class="container">
+		<div class="row">
+			<div class="title text-center wow fadeIn" data-wow-duration="500ms">
+				<h2>Get In <span class="color">Touch</span></h2>
+				<div class="border"></div>
+			</div>
+			<div class="contact-info col-md-6 wow fadeInUp" data-wow-duration="500ms">
+				<h3>Contact Details</h3>
+				<div class="contact-details">
+					<div class="con-info clearfix">
+						<i class="tf-ion-ios-telephone-outline"></i>
+						<span>Phone: +380937817413</span>
+					</div>
+
+					<div class="con-info clearfix">
+						<i class="tf-ion-ios-email-outline"></i>
+						<span>Email: Rompasstudio@gmail.com</span>
+					</div>
+				</div>
+			</div>
+			<div class="contact-form col-md-6 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+				<form id="contact-form" method="post">
+					{% csrf_token %}
+					<div class="form-group">
+						<input type="text" placeholder="Your Name" class="form-control" name="name" id="id_name" required="" maxlength="64">
+					</div>
+					<div class="form-group">
+						<input type="email" placeholder="Your Email" class="form-control" name="email" id="id_email" maxlength="64" required="">
+					</div>
+					<div class="form-group">
+						<textarea cols="40" rows="10" maxlength="2000" required="" placeholder="Message" class="form-control" name="message" id="id_message"></textarea>
+					</div>
+					<div id="mail-success" class="success">
+						Thank you. The Mailman is on His Way :)
+					</div>
+					<div id="mail-fail" class="error">
+						Sorry, don't know what happened. Try later :(
+					</div>
+					<div id="cf-submit">
+						<input type="submit" id="contact-submit" class="btn btn-transparent" value="Submit">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+{% block footer %}
+{% include 'core/footer.html' %}
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,13 @@
+*.py[cod]
+/static/
+/media/
+.idea/
+*.coverage
+__pycache__
+venv/
+env/
+settings_local.py
+Icon?
+/src/rompas/migrations/
+/src/orders/migrations/
+/src/cart/migrations/
